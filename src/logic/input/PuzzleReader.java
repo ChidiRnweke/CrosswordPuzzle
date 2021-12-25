@@ -1,4 +1,4 @@
-package crosswordpuzzle.input;
+package logic.input;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,10 +6,10 @@ import java.nio.file.Path;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class FileReader {
+public class PuzzleReader {
     /*
     This class is responsible for reading the input file and storing its information in a handful of variables.
-    The key idea of this class is that the scanner is passed between functions.
+    The key idea of this class is that the scanner is used between functions.
      */
     private int horizontalDimension;
     private int verticalDimension;
@@ -17,21 +17,24 @@ public class FileReader {
     private final String inputPath;
     private String descriptiveText = null;
 
-    public FileReader() {
+    public PuzzleReader() {
          /*
         The default constructor sets the input path to puzzle1
          */
-        this.inputPath = Path.of("src", "crosswordpuzzle", "input", "puzzle-1.txt").toAbsolutePath().toString();
+        this.inputPath = Path.of("src", "logic", "input", "puzzle-1.txt").toAbsolutePath().toString();
     }
 
-    public FileReader(String puzzleFile){
+    public PuzzleReader(String puzzleFile){
         /*
         This constructor allows you to read in a different puzzle than the one provided in the assignment.
          */
-        this.inputPath = Path.of("src", "crosswordpuzzle", "input", puzzleFile).toAbsolutePath().toString();
+        this.inputPath = Path.of("src", "logic", "input", puzzleFile).toAbsolutePath().toString();
     }
 
     public void readFile(){
+        /*
+         A single try with resources block in readFile() is responsible for closing the scanner for each function.
+         */
         try(Scanner scan = new Scanner(new File(inputPath))){
             readDimensions(scan);
             readTiles(scan);
@@ -60,10 +63,10 @@ public class FileReader {
         /*
          Takes the previously made scanner and parses the table based on the dimensions.
          */
-        tiles = new String[horizontalDimension][verticalDimension];
+        tiles = new String[verticalDimension][horizontalDimension];
         try{
-            for (int i = 0; i < horizontalDimension; i++){
-                for (int j = 0; j < verticalDimension; j++){
+            for (int i = 0; i < verticalDimension; i++){
+                for (int j = 0; j < horizontalDimension; j++){
                     tiles[i][j] = scan.next();
                 }
             }
