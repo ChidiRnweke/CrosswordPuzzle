@@ -13,7 +13,7 @@ public class PuzzleReader {
      */
     private int horizontalDimension;
     private int verticalDimension;
-    private String[][] tiles = {};
+    private String[][] squares = {};
     private final String inputPath;
     private String descriptiveText = null;
 
@@ -63,11 +63,11 @@ public class PuzzleReader {
         /*
          Takes the previously made scanner and parses the table based on the dimensions.
          */
-        tiles = new String[verticalDimension][horizontalDimension];
+        squares = new String[verticalDimension][horizontalDimension];
         try{
             for (int i = 0; i < verticalDimension; i++){
                 for (int j = 0; j < horizontalDimension; j++){
-                    tiles[i][j] = scan.next();
+                    squares[i][j] = scan.next();
                 }
             }
         }
@@ -94,6 +94,9 @@ public class PuzzleReader {
         }
     }
 
+    /*
+    Only accessors that are used are made.
+     */
     public int getHorizontalDimension() {
         return horizontalDimension;
     }
@@ -102,8 +105,8 @@ public class PuzzleReader {
         return verticalDimension;
     }
 
-    public String[][] getTiles() {
-        return tiles;
+    public String[][] getSquares() {
+        return squares;
     }
 
     public String getDescriptiveText() {
