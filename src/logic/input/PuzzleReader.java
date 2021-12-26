@@ -1,9 +1,12 @@
 package logic.input;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.InputMismatchException;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class PuzzleReader {
@@ -14,27 +17,18 @@ public class PuzzleReader {
     private int horizontalDimension;
     private int verticalDimension;
     private String[][] squares = {};
-    private final String inputPath;
+    private String solution;
     private String descriptiveText = null;
 
-    public PuzzleReader() {
-         /*
-        The default constructor sets the input path to puzzle1
-         */
-        this.inputPath = Path.of("src", "logic", "input", "puzzle-1.txt").toAbsolutePath().toString();
-    }
-
-    public PuzzleReader(String puzzleFile){
-        /*
-        This constructor allows you to read in a different puzzle than the one provided in the assignment.
-         */
-        this.inputPath = Path.of("src", "logic", "input", puzzleFile).toAbsolutePath().toString();
-    }
 
     public void readFile(){
         /*
          A single try with resources block in readFile() is responsible for closing the scanner for each function.
          */
+
+        String inputPath = Path.of("src", "logic", "input", "puzzle-1.txt").toAbsolutePath().toString();
+        this.solution = readSolution();
+
         try(Scanner scan = new Scanner(new File(inputPath))){
             readDimensions(scan);
             readTiles(scan);
@@ -43,6 +37,26 @@ public class PuzzleReader {
         catch (FileNotFoundException e) {
             System.out.println("No file was found at the current path: " + inputPath + ". Are you sure it is present?");
         }
+    }
+
+    private String readSolution(){
+        /*
+        Reads the solution from the config file.
+         */
+        String configPath = Path.of("src", "logic", "input", "config.properties").toAbsolutePath().toString();
+        Properties config = new Properties();
+
+        try(FileInputStream configFile = new FileInputStream(configPath)){
+            config.load(configFile);
+            return config.getProperty("solution");
+        }
+        catch (FileNotFoundException e){
+            System.out.println("Solution file not found");
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void readDimensions(Scanner scan) {
@@ -97,13 +111,6 @@ public class PuzzleReader {
     /*
     Only accessors that are used are made.
      */
-    public int getHorizontalDimension() {
-        return horizontalDimension;
-    }
-
-    public int getVerticalDimension() {
-        return verticalDimension;
-    }
 
     public String[][] getSquares() {
         return squares;
@@ -111,6 +118,10 @@ public class PuzzleReader {
 
     public String getDescriptiveText() {
         return descriptiveText;
+    }
+
+    public String getSolution() {
+        return solution;
     }
 }
 
