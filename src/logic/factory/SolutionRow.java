@@ -15,7 +15,7 @@ public class SolutionRow {
         row = new SolutionSquare[solution.length()];
         for (int i = 0; i < solution.length(); i++){
             char solutionLetter = solution.charAt(i);
-            row[i] = new SolutionSquare(solutionLetter);
+            row[i] = new SolutionSquare(String.valueOf(solutionLetter));
         }
     }
 
@@ -25,7 +25,7 @@ public class SolutionRow {
         returns false.
          */
         for (int i = 0; i < row.length; i++){
-            if (!row[i].validate(answer.charAt(i))){
+            if (!row[i].validate(String.valueOf(answer.charAt(i)))){
                 this.solved = false;
                 return;
             }

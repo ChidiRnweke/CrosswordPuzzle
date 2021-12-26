@@ -13,7 +13,7 @@ public class SquareArrayFactory {
         Factory factory = new Factory();
         objectArray = new Square[squareArray[0].length][squareArray[1].length];
         for (int i = 0; i < squareArray[0].length; i++){
-            for (int j = 0; i < squareArray[1].length; j++){
+            for (int j = 0; j < squareArray[1].length; j++){
                 objectArray[i][j] = factory.makeSquare(squareArray[i][j]);
             }
         }

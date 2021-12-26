@@ -5,13 +5,12 @@ import java.util.Random;
 public class HelpSquare extends FillableSquare{
     /*
     A help square has the potential to provide hints to the end-user.
-    getLetterChoices is overriden to provide a hintArray if the user has asked for hints.
+    getLetterChoices is overriden to provide a hintArray.
      */
-    private final char hint;
-    private boolean hintGiven = false;
-    private final char [] hintArray = {'\0','\0','\0','\0','\0'}; // final means its elements can be mutated.
+    private final String hint;
+    private final String[] hintArray = {}; // final means its elements can be mutated.
 
-    public HelpSquare(char hint) {
+    public HelpSquare(String hint) {
         /*
         The help square is initialised with a hint.
         */
@@ -28,21 +27,20 @@ public class HelpSquare extends FillableSquare{
 
         while (i < 5){
             int index = rand.nextInt(25);
-            char suggestion = letterChoices[index];
+            String suggestion = letterChoices[index];
             if (checkLetter(suggestion)){
                 hintArray[i] = suggestion;
                 i++;
             }
         }
-        hintGiven = true;
     }
 
-    private boolean checkLetter(char suggestion) {
+    private boolean checkLetter(String suggestion) {
         /*
         Loops over the hint array and checks if the randomly generated letter is already inside.
          */
         for (int j = 0; j < 5; j++) {
-            if (suggestion == hintArray[j]) {
+            if (suggestion.equals(hintArray[j])) {
                 return false;
             }
         }
@@ -50,15 +48,13 @@ public class HelpSquare extends FillableSquare{
     }
 
     @Override
-    public char[] getLetterChoices() {
+    public String[] getLetterChoices() {
         /*
-        If a hint has been given for a given tile the letter choices returned should be the hintArray.
-        If not they should be the default letterChoices that were inherited from the abstract class.
+        Easiest way is to just override the getter. All FillableSquares return the full alphabet but this one just
+        returns 5 letters.
          */
-        if (hintGiven) {
-            return hintArray;
-        } else {
-            return super.getLetterChoices();
-        }
+        return hintArray;
+
     }
+
 }

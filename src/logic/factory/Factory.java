@@ -18,17 +18,17 @@ public class Factory {
             case 'S':
                 return new GreySquare();
             case 'H':
-                char hint = parseHint(type);
+                String hint = parseHint(type);
                 return new HelpSquare(hint);
             default:
                 throw new IllegalArgumentException();
         }
     }
 
-    private char parseHint(String hint){
+    private String parseHint(String hint){
         /*
         For a help square the hint is found at the second index.
          */
-        return hint.charAt(2);
+        return String.valueOf(hint.charAt(2));
     }
 }
