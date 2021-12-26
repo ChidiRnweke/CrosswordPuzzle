@@ -32,5 +32,13 @@ public class SolutionRow {
         }
         this.solved = true;
     }
+
+    public SolutionSquare[] getRow() {
+        return row;
+    }
+
+    public boolean isSolved() {
+        return solved;
+    }
 }
 

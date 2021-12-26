@@ -98,7 +98,12 @@ public class PuzzleReader {
         Reads the descriptive text from the file and stores it in a single String.
          */
         try{
-            descriptiveText = scan.useDelimiter("\\Z").next();
+            StringBuilder sb = new StringBuilder();
+            while (scan.hasNext()){
+                sb.append("<html>").append(scan.nextLine()).append("<br>");
+             }
+            sb.append("</html");
+            descriptiveText = sb.toString();
         }
         catch (InputMismatchException e) {
             System.out.println("The data provided is in an incorrect format.");

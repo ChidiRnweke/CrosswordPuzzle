@@ -40,7 +40,7 @@ public class CrossWordPanel extends JPanel{
             return Color.WHITE;
         }
         else if (square instanceof GreySquare){
-            return Color.darkGray;
+            return Color.lightGray;
         }
         else if (square instanceof HelpSquare){
             return Color.CYAN;

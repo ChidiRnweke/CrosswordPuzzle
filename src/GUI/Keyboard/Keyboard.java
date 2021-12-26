@@ -28,20 +28,20 @@ public class Keyboard extends JFrame{
         List<String>  letterChoices = new ArrayList<>(Arrays.asList(square.getLetterChoices()));
 
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setSize(2000, 500);
+        this.setSize(2000, 250);
         this.setLayout(new FlowLayout());
         this.setVisible(true);
         for (String letter : keys){
             JButton key = new JButton(String.valueOf(letter));
-            key.setPreferredSize(new Dimension(100,100));
+            key.setPreferredSize(new Dimension(75,75));
             key.addActionListener(e -> {
                 square.setInput(letter);
                 pressedFrom.setText(square.getInput());
                 this.dispose();
-            });
+            }); // Personal preference for lambda expressions as just this button uses this functionality.
             if (!letterChoices.contains(letter)){
                 key.setEnabled(false);
-            }
+            } // Makes sure help buttons only show 5 letters.
             this.add(key);
         }
     }

@@ -8,7 +8,7 @@ public class HelpSquare extends FillableSquare{
     getLetterChoices is overriden to provide a hintArray.
      */
     private final String hint;
-    private final String[] hintArray = {}; // final means its elements can be mutated.
+    private final String[] hintArray = {"","","","",""}; // final means its elements can be mutated.
 
     public HelpSquare(String hint) {
         /*
@@ -53,6 +53,7 @@ public class HelpSquare extends FillableSquare{
         Easiest way is to just override the getter. All FillableSquares return the full alphabet but this one just
         returns 5 letters.
          */
+        giveHint();
         return hintArray;
 
     }
