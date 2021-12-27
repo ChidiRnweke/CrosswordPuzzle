@@ -1,7 +1,7 @@
 package logic.squares;
 
 /*
-Forms the basis for the three FillableSquares: GreySquare, HelpSquare and RegularSquare.
+Forms the basis for the three FillableSquares: SpecialSquare, HelpSquare and RegularSquare.
  */
 public class SolutionSquare extends FillableSquare{
     private final String solution;

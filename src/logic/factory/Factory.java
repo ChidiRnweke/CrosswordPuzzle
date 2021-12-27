@@ -16,7 +16,7 @@ public class Factory {
             case 'X':
                 return new BlackSquare();
             case 'S':
-                return new GreySquare();
+                return new SpecialSquare();
             case 'H':
                 String hint = parseHint(type);
                 return new HelpSquare(hint);
