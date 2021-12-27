@@ -2,6 +2,7 @@ package GUI.homeScreen;
 
 import GUI.panels.CrossWordPanel;
 import GUI.panels.SolutionPanel;
+import logic.factory.Puzzle;
 import logic.factory.SolutionRow;
 import logic.factory.SquareArrayFactory;
 import logic.input.PuzzleReader;
@@ -57,16 +58,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-        PuzzleReader puzzle = new PuzzleReader(); // reads the input file
-        puzzle.readFile();
-        SquareArrayFactory factory = new SquareArrayFactory(); // responsible for making the square objects
-        SolutionRow solutionRow = new SolutionRow(); // responsible for making the bottom row
+        Puzzle game = new Puzzle();
+        game.startPuzzle();
 
-
-
-        solutionRow.makeRow(puzzle.getSolution()); // solution squares are made
-        factory.makeArray(puzzle.getSquares()); // crossword squares are made
-
-        new Main().startGame(puzzle.getDescriptiveText(),factory.getObjectArray(), solutionRow, puzzle.getSolution());
+        new Main().startGame(game.getDescriptiveText(), game.getSquares(), game.getSolutionRow(), game.getSolution());
     }
 }

@@ -21,7 +21,7 @@ public class SolutionRow {
 
     public void setSolved() {
         /*
-        Checks if all rows are correct, if so it returns true. If one is incorrect it breaks out of the method and
+        Checks if all rows are correct, if so it returns true. If one is incorrect it breaks out of the loop and
         returns false.
          */
         for (SolutionSquare solutionSquare : row) {
