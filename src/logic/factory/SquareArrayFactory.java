@@ -3,6 +3,10 @@ package logic.factory;
 import logic.squares.Square;
 
 public class SquareArrayFactory {
+    /*
+    The factory class is able to make one Square object. This class uses the factory class on the string input array to
+    create an object array of strings.
+     */
 
     private Square[][] objectArray = {};
 

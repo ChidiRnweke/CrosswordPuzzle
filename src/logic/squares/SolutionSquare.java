@@ -10,7 +10,7 @@ public class SolutionSquare extends FillableSquare{
         this.solution = solution;
     }
 
-    public boolean validate(String answer){
-        return solution.equals(answer);
+    public boolean validate(){
+        return solution.equalsIgnoreCase(input);
     }
 }

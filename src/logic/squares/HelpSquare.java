@@ -52,6 +52,7 @@ public class HelpSquare extends FillableSquare{
         /*
         Easiest way is to just override the getter. All FillableSquares return the full alphabet but this one just
         returns 5 letters.
+        Each time you call this method a new hint is given, this is intentionally done to make it easier for the user.
          */
         giveHint();
         return hintArray;

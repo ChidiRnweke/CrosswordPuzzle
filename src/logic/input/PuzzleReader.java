@@ -27,7 +27,7 @@ public class PuzzleReader {
          */
 
         String inputPath = Path.of("src", "logic", "input", "puzzle-1.txt").toAbsolutePath().toString();
-        this.solution = readSolution();
+        readSolution(); //reads the solution file
 
         try(Scanner scan = new Scanner(new File(inputPath))){
             readDimensions(scan);
@@ -39,7 +39,7 @@ public class PuzzleReader {
         }
     }
 
-    private String readSolution(){
+    private void readSolution(){
         /*
         Reads the solution from the config file.
          */
@@ -48,7 +48,7 @@ public class PuzzleReader {
 
         try(FileInputStream configFile = new FileInputStream(configPath)){
             config.load(configFile);
-            return config.getProperty("solution");
+            solution =  config.getProperty("solution");
         }
         catch (FileNotFoundException e){
             System.out.println("Solution file not found");
@@ -56,7 +56,6 @@ public class PuzzleReader {
         catch (IOException e){
             e.printStackTrace();
         }
-        return null;
     }
 
     private void readDimensions(Scanner scan) {

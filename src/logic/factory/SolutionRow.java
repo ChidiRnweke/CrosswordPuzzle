@@ -14,18 +14,18 @@ public class SolutionRow {
          */
         row = new SolutionSquare[solution.length()];
         for (int i = 0; i < solution.length(); i++){
-            char solutionLetter = solution.charAt(i);
-            row[i] = new SolutionSquare(String.valueOf(solutionLetter));
+            String solutionLetter = String.valueOf(solution.charAt(i));
+            row[i] = new SolutionSquare(solutionLetter);
         }
     }
 
-    public void setSolved(String answer) {
+    public void setSolved() {
         /*
         Checks if all rows are correct, if so it returns true. If one is incorrect it breaks out of the method and
         returns false.
          */
-        for (int i = 0; i < row.length; i++){
-            if (!row[i].validate(String.valueOf(answer.charAt(i)))){
+        for (SolutionSquare solutionSquare : row) {
+            if (!solutionSquare.validate()) { // the validate method of a SolutionSquare just checks if the strings are equal
                 this.solved = false;
                 return;
             }

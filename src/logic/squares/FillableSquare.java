@@ -10,12 +10,6 @@ public abstract class FillableSquare extends Square{
                     "N", "O", "P", "Q","R","S","T",
                     "U","V","W","X","Y","Z"};
 
-    protected boolean filled = false;
-
-    public void setFilled(boolean filled) {
-        this.filled = filled;
-    }
-
     public void setInput(String input){
         this.input = input;
     }

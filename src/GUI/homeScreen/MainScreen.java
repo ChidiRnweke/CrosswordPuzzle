@@ -12,20 +12,22 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class MainScreen {
-
+    /*
+    Main screen and main method of the program.
+     */
 
     public MainScreen(String descriptiveText, Square[][] squares, SolutionRow solutionRow, String answer){
 
         JFrame mainScreen = new JFrame();
-        ImageIcon icon = new ImageIcon("src/GUI/homeScreen/logo.png");
-
         mainScreen.setLayout(new BorderLayout());
 
         mainScreen.setTitle("Swedish-Style crossword puzzle");
         mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainScreen.setSize(1500,2000);
 
-        mainScreen.setIconImage(icon.getImage());
+
+        ImageIcon icon = new ImageIcon("src/GUI/homeScreen/logo.png");
+        mainScreen.setIconImage(icon.getImage());  //sets the KUL logo on the screen
 
 
         JPanel textPanel = new JPanel();
@@ -34,14 +36,14 @@ public class MainScreen {
         TitledBorder title = BorderFactory.createTitledBorder("Crossword puzzle instructions");
         textPanel.setBorder(title);
         JLabel text = new JLabel(descriptiveText);
-        textPanel.add(text);
+        textPanel.add(text); // This panel does not modify or change any behaviour JPanel, so it is just placed on it.
 
-        SolutionPanel solutionPanel = new SolutionPanel(solutionRow, answer);
+        SolutionPanel solutionPanel = new SolutionPanel(solutionRow, answer); //SolutionPanel extends JPanel
         solutionPanel.setPreferredSize(new Dimension(1500, 100));
 
 
 
-        CrossWordPanel crosswordpanel = new CrossWordPanel(squares);
+        CrossWordPanel crosswordpanel = new CrossWordPanel(squares); //CrossWordPanel extends JPanel
         crosswordpanel.setPreferredSize(new Dimension(1000,1000));
 
         mainScreen.add(textPanel, BorderLayout.WEST);
@@ -53,15 +55,15 @@ public class MainScreen {
 
 
     public static void main(String[] args) {
-        PuzzleReader puzzle = new PuzzleReader();
-        SquareArrayFactory factory = new SquareArrayFactory();
+        PuzzleReader puzzle = new PuzzleReader(); // reads the input file
+        SquareArrayFactory factory = new SquareArrayFactory(); // responsible for making the square objects
+        SolutionRow solutionRow = new SolutionRow(); // responsible for making the bottom row
+
         puzzle.readFile();
-        String answer= puzzle.getSolution();
-        SolutionRow solutionRow = new SolutionRow();
-        solutionRow.makeRow(puzzle.getSolution());
-        factory.makeArray(puzzle.getSquares());
-        Square[][] squares = factory.getObjectArray();
-        String text = puzzle.getDescriptiveText();
-        new MainScreen(text,squares, solutionRow, answer);
+
+        solutionRow.makeRow(puzzle.getSolution()); // solution squares are made
+        factory.makeArray(puzzle.getSquares()); // crossword squares are made
+
+        new MainScreen(puzzle.getDescriptiveText(),factory.getObjectArray(), solutionRow, puzzle.getSolution());
     }
 }

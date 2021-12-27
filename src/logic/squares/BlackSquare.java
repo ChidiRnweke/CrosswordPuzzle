@@ -1,10 +1,8 @@
 package logic.squares;
 
 public class BlackSquare extends Square {
-    /*
-    BlackSquares are filled with an empty char. Setting this to final ensures this remains so.
-     */
-    private final String input = null;
-    private final boolean filled = true;
+/*
+Empty by choice, all the behaviour is included in the abstract class Square.
+ */
 
 }
